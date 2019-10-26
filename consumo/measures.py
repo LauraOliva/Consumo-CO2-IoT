@@ -43,7 +43,7 @@ while True:
 			sendT.append(temp)
 			
 			if not insert:
-				conn = sqlite3.connect("sensor_database/sensorData.db")
+				conn = sqlite3.connect("/home/pi/consumo/sensor_database/sensorData.db")
 				cursor = conn.cursor()
 				cursor.execute("SELECT * FROM measures")
 				results = cursor.fetchall()
@@ -72,7 +72,7 @@ while True:
 				
 				# Guardar en base de datos
 				sql_insert = "INSERT INTO measures(timestamp, t, hum, co2) VALUES (?,?,?,?)"
-				conn = sqlite3.connect("sensor_database/sensorDataInt.db")
+				conn = sqlite3.connect("/home/pi/consumo/sensor_database/sensorDataInt.db")
 				cursor = conn.cursor()
 				cursor.execute(sql_insert, (time.time()+7200, temp, humidity, co2))
 				conn.commit()
